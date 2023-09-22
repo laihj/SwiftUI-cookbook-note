@@ -10,77 +10,98 @@ import CoreData
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
-
+    
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
         animation: .default)
     private var items: FetchedResults<Item>
-
+    
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-                    } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
-                    }
-                }
-                .onDelete(perform: deleteItems)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
-            Text("Select an item")
-        }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
+        NavigationStack {
+            Text("hello")
+                .font(.largeTitle)
+                .navigationTitle("Hello")
+                .navigationBarTitleDisplayMode(.inline)
+            
+            NavigationLink("detailList", destination: DetailListView())
+            NavigationLink("detailForm", destination: DetailFormView())
+            
+            NavigationLink("storeView", destination: AppSceneStoreView())
+            
+            Button {
+                
+            } label: {
+                Text("Press Me!")
+                    .font(.largeTitle)
+                    .foregroundStyle(.white)
+            }.padding()
+                .background(
+                    LinearGradient(gradient: Gradient(colors: [.purple,.pink]), startPoint: .topLeading, endPoint: .bottomTrailing)
+                )
+                .cornerRadius(10)
+            
+            Text("backgouund")
+                .background(
+                    Image(systemName: "flame")
+                        .resizable(resizingMode: .tile) //todo tile 为什么没有平铺开
+                        .opacity(0.25)
+                )
+                .fontWeight(.heavy)
+                .fontWidth(.expanded)
+                .padding()
+                .background(.white)// todo 没有 background 就没有 shadow
+                .border(Color.black, width: 3)
+                .shadow(radius: 10)
+            
+            Circle()
+                    .fill(Color.blue) //todo 没有 fill 也没有 shadow
+                    .shadow(color: .purple, radius: 10, x: 0, y: 0)
+                    .padding(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
         }
     }
 }
+    
+struct DetailListView: View {
+    let tasks = ["Task 1", "Task 2", "Task 3", "Task 4", "Task 5"]
+      var body: some View {
+          List(tasks, id: \.self) { task in
+                Text(task)
+              }
+      }
+}
 
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
+struct DetailFormView: View {
+    @EnvironmentObject var settings:UserSettings
+    @State private var username = ""
+    @State private var email = ""
+    @State private var password = ""
+    
+  var body: some View {
+      NavigationView {
+          Form {
+              Section(header: Text("Person info")) {
+                  TextField("Username", text: $settings.username)
+                  TextField("email", text:$email)
+              }
+              
+              Section(header: Text("Login")) {
+                  SecureField("password", text: $password)
+              }
+              
+              Section {
+                  Button(action: {}, label: {
+                      Text("Button")
+                  })
+              }
+              
+          }
+      }
+  }
+}
+
 
 #Preview {
-    ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+    ContentView()
+        .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        .environmentObject(UserSettings())
 }
