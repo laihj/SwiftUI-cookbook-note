@@ -10,6 +10,8 @@ import SwiftUI
 struct animation: View {
     
     @State private var rotate = false
+    
+    @State private var angle: Double = 0.0
 
     var body: some View {
       VStack {
@@ -26,6 +28,15 @@ struct animation: View {
         }
         .rotation3DEffect(.degrees(rotate ? 180 : 0), axis: (x: 0, y: 1, z: 0))
         .animation(.easeInOut(duration: 0.5), value: rotate)
+          
+          Rectangle()
+            .foregroundColor(.blue)
+            .frame(width: 150, height: 150)
+            .rotationEffect(.degrees(angle))
+            .onTapGesture {
+              angle += 360
+            }
+            .animation(.spring(response: 0.5, dampingFraction: 0.4), value: angle)
       }
     }
     

@@ -52,6 +52,7 @@
 		38D3333B2B1F17AC00980E1A /* TextViewFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D3333A2B1F17AC00980E1A /* TextViewFrame.swift */; };
 		38D3333D2B1F260A00980E1A /* AlignmentGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D3333C2B1F260A00980E1A /* AlignmentGuide.swift */; };
 		38D3333F2B1F30C100980E1A /* animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D3333E2B1F30C100980E1A /* animation.swift */; };
+		38D333412B2072A600980E1A /* LineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D333402B2072A600980E1A /* LineChart.swift */; };
 		38E724152AB46A6E0045844C /* cookbookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E724142AB46A6E0045844C /* cookbookApp.swift */; };
 		38E724172AB46A6E0045844C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E724162AB46A6E0045844C /* ContentView.swift */; };
 		38E724192AB46A700045844C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38E724182AB46A700045844C /* Assets.xcassets */; };
@@ -134,6 +135,7 @@
 		38D3333A2B1F17AC00980E1A /* TextViewFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewFrame.swift; sourceTree = "<group>"; };
 		38D3333C2B1F260A00980E1A /* AlignmentGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignmentGuide.swift; sourceTree = "<group>"; };
 		38D3333E2B1F30C100980E1A /* animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = animation.swift; sourceTree = "<group>"; };
+		38D333402B2072A600980E1A /* LineChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChart.swift; sourceTree = "<group>"; };
 		38E724112AB46A6E0045844C /* cookbook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cookbook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38E724142AB46A6E0045844C /* cookbookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cookbookApp.swift; sourceTree = "<group>"; };
 		38E724162AB46A6E0045844C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 				38B330B82ADCDB8300116A66 /* map.swift */,
 				38D3333C2B1F260A00980E1A /* AlignmentGuide.swift */,
 				38D3333E2B1F30C100980E1A /* animation.swift */,
+				38D333402B2072A600980E1A /* LineChart.swift */,
 			);
 			path = cookbook;
 			sourceTree = "<group>";
@@ -412,6 +415,7 @@
 				382BDFE22AB859280029CFA4 /* TimeCountView.swift in Sources */,
 				382BDFF62AB976720029CFA4 /* AnimateImageView.swift in Sources */,
 				382BE00E2ABBF3B80029CFA4 /* ModelViewFromTab.swift in Sources */,
+				38D333412B2072A600980E1A /* LineChart.swift in Sources */,
 				382BDFFC2AB986390029CFA4 /* TabListView.swift in Sources */,
 				382BDFD42AB84A270029CFA4 /* GridView.swift in Sources */,
 				382BDFF82AB977670029CFA4 /* PhotoPicker.swift in Sources */,
