@@ -89,7 +89,20 @@ struct DetailFormView: View {
               }
               
               Section {
-                  Button(action: {}, label: {
+                  Button(action: {
+                      Task {
+                          sleep()
+                          await MainActor.run {
+                              
+                          }
+                      }
+//                      do {
+//                          let image = try await fetchImage()
+//                      } catch {
+//                          
+//                      }
+                      print("yes")
+                  }, label: {
                       Text("Button")
                   })
               }
@@ -97,7 +110,24 @@ struct DetailFormView: View {
           }
       }
   }
+    func sleep() {
+        
+    }
+    
+    func fetchData() async {
+        do {
+            try await fetchImage()
+        } catch {
+            
+        }
+    }
+
+    func fetchImage() async throws -> Image {
+        return Image("image")
+    }
 }
+
+
 
 
 #Preview {

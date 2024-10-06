@@ -13,7 +13,7 @@ struct cookbookApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ModelViewFromTab()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .environmentObject(UserSettings(username: "name1"))
                 .environmentObject(UserSettings(username: "name2"))

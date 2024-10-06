@@ -38,14 +38,24 @@ struct PickerView: View {
                 .padding()
         }
         VStack {
-              Text("Selected date is: \(selectedDate)")
+            Text("Selected date is: \(formatRelativeDateString(for:selectedDate))")
 
-              DatePicker("Select a date", selection: $selectedDate, displayedComponents: .date)
+            DatePicker("Select a date", selection: $selectedDate, displayedComponents: [.date, .hourAndMinute])
                 .datePickerStyle(.graphical)
+//                .datePickerStyle(.graphical)
                 .padding()
             }
             .padding()
     }
+}
+
+func formatRelativeDateString(for date: Date) -> String {
+    let formatter = DateFormatter()
+    formatter.locale = Locale.current
+    formatter.dateStyle = .medium
+    formatter.timeStyle = .none
+    formatter.doesRelativeDateFormatting = true
+    return formatter.string(from: date)
 }
 
 #Preview {
